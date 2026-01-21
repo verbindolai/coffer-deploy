@@ -1,0 +1,77 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: coffer-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-coffer}
+      POSTGRES_USER: ${DB_USER:-coffer}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+    volumes:
+      - coffer-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-coffer} -d ${DB_NAME:-coffer}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - coffer-network
+
+  backend:
+    build:
+      context: ../coffer2
+      dockerfile: Dockerfile
+    container_name: coffer-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: coffer-db
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-coffer}
+      DB_USERNAME: ${DB_USER:-coffer}
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+      NUMISTA_API_KEY: ${NUMISTA_API_KEY:-}
+      STORAGE_BASE_PATH: /app/data/images
+      JAVA_OPTS: ${JAVA_OPTS:--Xmx512m}
+    volumes:
+      - coffer-images:/app/data/images
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/swagger-ui.html"]
+      interval: 30s
+      timeout: 10s
+      start_period: 60s
+      retries: 3
+    networks:
+      - coffer-network
+
+  frontend:
+    build:
+      context: ../coffer2-ui
+      dockerfile: Dockerfile
+    container_name: coffer-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${FRONTEND_PORT:-80}:80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - coffer-network
+
+volumes:
+  coffer-db-data:
+    name: coffer-db-data
+  coffer-images:
+    name: coffer-images
+
+networks:
+  coffer-network:
+    name: coffer-network
+    driver: bridge
