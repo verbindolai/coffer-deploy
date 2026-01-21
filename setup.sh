@@ -13,8 +13,8 @@ echo -e "${GREEN}========================================${NC}"
 echo ""
 
 # Configuration - Update these URLs to your actual repositories
-BACKEND_REPO="https://github.com/YOUR_USERNAME/coffer2.git"
-FRONTEND_REPO="https://github.com/YOUR_USERNAME/coffer2-ui.git"
+BACKEND_REPO="https://github.com/verbindolai/coffer2.git"
+FRONTEND_REPO="https://github.com/verbindolai/coffer2-ui.git"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PARENT_DIR="$(dirname "$SCRIPT_DIR")"
