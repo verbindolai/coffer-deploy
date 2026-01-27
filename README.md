@@ -1,6 +1,21 @@
-# Coffer Self-Hosted Deployment
+<p align="center">
+  <img src="https://raw.githubusercontent.com/YOUR_USERNAME/coffer2-ui/main/public/favicon.svg" width="80" alt="Coffer Logo">
+</p>
 
-Self-host your own Coffer coin collection manager with Docker.
+<h1 align="center">Coffer Deploy</h1>
+
+<p align="center">
+  <strong>Self-host your coin collection manager with Docker</strong>
+</p>
+
+<p align="center">
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#configuration">Configuration</a> •
+  <a href="#architecture">Architecture</a> •
+  <a href="#common-commands">Commands</a>
+</p>
+
+---
 
 ## Prerequisites
 

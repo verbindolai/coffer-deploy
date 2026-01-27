@@ -35,6 +35,9 @@ services:
       NUMISTA_API_KEY: ${NUMISTA_API_KEY:-}
       STORAGE_BASE_PATH: /app/data/images
       JAVA_OPTS: ${JAVA_OPTS:--Xmx512m}
+      METAL_QUOTES_CRON: ${METAL_QUOTES_CRON:-}
+      ISSUE_PRICES_CRON: ${ISSUE_PRICES_CRON:-}
+      PORTFOLIO_SNAPSHOT_CRON: ${PORTFOLIO_SNAPSHOT_CRON:-}
     volumes:
       - coffer-images:/app/data/images
     healthcheck:
