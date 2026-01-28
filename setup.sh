@@ -51,34 +51,6 @@ else
     echo -e "${GREEN}Frontend repository already exists.${NC}"
 fi
 
-# Setup .env file
-if [ ! -f "$SCRIPT_DIR/.env" ]; then
-    echo -e "${YELLOW}Creating .env file from template...${NC}"
-    cp "$SCRIPT_DIR/.env.example" "$SCRIPT_DIR/.env"
-
-    # Generate a random password
-    RANDOM_PASSWORD=$(openssl rand -base64 32 | tr -dc 'a-zA-Z0-9' | head -c 24)
-
-    # Replace the placeholder password (works on both Linux and macOS)
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i '' "s/changeme_use_a_strong_password/$RANDOM_PASSWORD/" "$SCRIPT_DIR/.env"
-    else
-        sed -i "s/changeme_use_a_strong_password/$RANDOM_PASSWORD/" "$SCRIPT_DIR/.env"
-    fi
-
-    echo -e "${GREEN}.env file created with a generated database password.${NC}"
-    echo ""
-    echo -e "${YELLOW}IMPORTANT: Please edit .env to configure:${NC}"
-    echo -e "  - NUMISTA_API_KEY (optional, for coin catalog lookups)"
-    echo -e "  - FRONTEND_PORT (default: 80)"
-    echo -e "  - JAVA_OPTS (adjust memory if needed)"
-    echo ""
-    read -p "Press Enter to open .env in your default editor, or Ctrl+C to edit manually later..."
-    ${EDITOR:-nano} "$SCRIPT_DIR/.env"
-else
-    echo -e "${GREEN}.env file already exists.${NC}"
-fi
-
 echo ""
 echo -e "${YELLOW}Starting Coffer with Docker Compose...${NC}"
 echo ""
