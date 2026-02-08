@@ -18,9 +18,8 @@ services:
       - coffer-network
 
   backend:
-    build:
-      context: ../coffer2
-      dockerfile: Dockerfile
+    image: ghcr.io/verbindolai/coffer2:latest
+    pull_policy: always
     container_name: coffer-backend
     restart: unless-stopped
     depends_on:
@@ -50,9 +49,8 @@ services:
       - coffer-network
 
   frontend:
-    build:
-      context: ../coffer2-ui
-      dockerfile: Dockerfile
+    image: ghcr.io/verbindolai/coffer2-ui:latest
+    pull_policy: always
     container_name: coffer-frontend
     restart: unless-stopped
     depends_on:

@@ -21,15 +21,12 @@
 
 - [Docker](https://docs.docker.com/get-docker/) (20.10+)
 - [Docker Compose](https://docs.docker.com/compose/install/) (v2+)
-- Git
 
 ## Quick Start
 
-### Option 1: Automated Setup
-
 ```bash
 # Clone the deploy repository
-git clone https://github.com/YOUR_USERNAME/coffer-deploy.git
+git clone https://github.com/verbindolai/coffer-deploy.git
 cd coffer-deploy
 
 # Create your environment file
@@ -38,37 +35,11 @@ cp .env.example .env
 # Edit .env and set your configuration (especially DB_PASSWORD)
 nano .env
 
-# Run the setup script
-./setup.sh
+# Start all services
+docker compose up -d
 ```
 
-The setup script will:
-1. Clone the backend and frontend repositories
-4. Build and start all containers
-
-### Option 2: Manual Setup
-
-```bash
-# Create a directory for all Coffer repositories
-mkdir coffer && cd coffer
-
-# Clone all repositories
-git clone https://github.com/YOUR_USERNAME/coffer-deploy.git
-git clone https://github.com/YOUR_USERNAME/coffer2.git
-git clone https://github.com/YOUR_USERNAME/coffer2-ui.git
-
-# Enter the deploy directory
-cd coffer-deploy
-
-# Create your environment file
-cp .env.example .env
-
-# Edit .env and set your configuration (especially DB_PASSWORD)
-nano .env
-
-# Build and start
-docker compose up --build -d
-```
+Pre-built images are pulled automatically from GitHub Container Registry.
 
 ## Configuration
 
@@ -102,13 +73,8 @@ Once running, access:
 ## Updating
 
 ```bash
-# Pull latest changes
-cd ../coffer2 && git pull
-cd ../coffer2-ui && git pull
-cd ../coffer-deploy && git pull
-
-# Rebuild and restart
-docker compose up --build -d
+docker compose pull
+docker compose up -d
 ```
 
 ## Troubleshooting
