@@ -51,6 +51,7 @@ Edit `.env` to customize your deployment:
 | `DB_USER` | `coffer` | PostgreSQL username |
 | `DB_PASSWORD` | (required) | PostgreSQL password |
 | `NUMISTA_API_KEY` | (optional) | API key for [Numista](https://en.numista.com/api/) coin catalog |
+| `NUMISTA_CLIENT_ID` | (optional) | Numista OAuth client ID for collection import |
 | `FRONTEND_PORT` | `80` | Port to access the web interface |
 | `JAVA_OPTS` | `-Xmx512m` | JVM memory settings |
 
