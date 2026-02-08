@@ -33,6 +33,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
       NUMISTA_API_KEY: ${NUMISTA_API_KEY:-}
       NUMISTA_CLIENT_ID: ${NUMISTA_CLIENT_ID:-}
+      BASE_URL_FRONTEND: ${BASE_URL_FRONTEND:-http://localhost}
       STORAGE_BASE_PATH: /app/data/images
       JAVA_OPTS: ${JAVA_OPTS:--Xmx512m}
       METAL_QUOTES_CRON: ${METAL_QUOTES_CRON:-0 */5 * * * 1-5}
