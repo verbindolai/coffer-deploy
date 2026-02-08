@@ -18,7 +18,7 @@ services:
       - coffer-network
 
   backend:
-    image: ghcr.io/verbindolai/coffer2:latest
+    image: ghcr.io/verbindolai/coffer:latest
     pull_policy: always
     container_name: coffer-backend
     restart: unless-stopped
@@ -50,7 +50,7 @@ services:
       - coffer-network
 
   frontend:
-    image: ghcr.io/verbindolai/coffer2-ui:latest
+    image: ghcr.io/verbindolai/coffer-ui:latest
     pull_policy: always
     container_name: coffer-frontend
     restart: unless-stopped
