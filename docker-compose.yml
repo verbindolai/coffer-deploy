@@ -35,9 +35,9 @@ services:
       NUMISTA_CLIENT_ID: ${NUMISTA_CLIENT_ID:-}
       STORAGE_BASE_PATH: /app/data/images
       JAVA_OPTS: ${JAVA_OPTS:--Xmx512m}
-      METAL_QUOTES_CRON: ${METAL_QUOTES_CRON:-}
-      ISSUE_PRICES_CRON: ${ISSUE_PRICES_CRON:-}
-      PORTFOLIO_SNAPSHOT_CRON: ${PORTFOLIO_SNAPSHOT_CRON:-}
+      METAL_QUOTES_CRON: ${METAL_QUOTES_CRON:-0 */5 * * * 1-5}
+      ISSUE_PRICES_CRON: ${ISSUE_PRICES_CRON:-0 0 2 * * *}
+      PORTFOLIO_SNAPSHOT_CRON: ${PORTFOLIO_SNAPSHOT_CRON:-0 0 * * * *}
     volumes:
       - coffer-images:/app/data/images
     healthcheck:
