@@ -78,6 +78,10 @@ docker compose pull
 docker compose up -d
 ```
 
+## Contributing
+
+Interested in contributing? See the [Contributing Guide](https://github.com/verbindolai/coffer2/blob/master/CONTRIBUTING.md) for setup instructions and development workflow.
+
 ## Troubleshooting
 
 ### Port already in use
